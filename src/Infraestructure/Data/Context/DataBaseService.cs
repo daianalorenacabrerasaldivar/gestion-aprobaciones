@@ -1,9 +1,11 @@
+using Application.Interface;
 using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infraestructure.Data.Context
 {
-    public class AppDbContext : DbContext
+    public class DataBaseService : DbContext, IDataBaseService
     {
         public DbSet<ApprovalRule> ApprovalRules { get; set; }
         public DbSet<ProjectProposal> ProjectProposals { get; set; }
@@ -14,14 +16,11 @@ namespace Infraestructure.Data.Context
         public DbSet<ApproverRole> ApproverRoles { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public AppDbContext(DbContextOptions options) : base(options)
+        public DataBaseService(DbContextOptions options) : base(options)
         {
 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-        }
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
