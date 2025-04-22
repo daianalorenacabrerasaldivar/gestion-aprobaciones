@@ -42,5 +42,9 @@ namespace Infraestructure.Data.Context
             return nroregistrosModificados > 0;
         }
 
+        public IQueryable<T> Query<T>() where T : class
+        {
+            return Set<T>();
+        }
     }
 }

@@ -13,10 +13,9 @@ namespace Infraestructure.Data.Seed
             LoadAreas(context);
             LoadUser(context);
             LoadApprovalRules(context);
-
         }
 
-        private void LoadApprovalRoles(DataBaseService context)
+        private static void LoadApprovalRoles(DataBaseService context)
         {
             if (!context.ApproverRoles.Any())
             {
@@ -29,7 +28,7 @@ namespace Infraestructure.Data.Seed
                 context.SaveChanges();
             }
         }
-        private void LoadProjectTypes(DataBaseService context)
+        private static void LoadProjectTypes(DataBaseService context)
         {
             if (!context.ProjectTypes.Any())
             {
@@ -38,12 +37,11 @@ namespace Infraestructure.Data.Seed
                     new ProjectType { Id = 2, Name = "Innovación y Desarrollo" },
                     new ProjectType { Id = 3, Name = "Infraestructura" },
                     new ProjectType { Id = 4, Name = "Capacitación Interna" }
-        );
                 );
                 context.SaveChanges();
             }
         }
-        private void LoadApprovalStatuses(DataBaseService context)
+        private static void LoadApprovalStatuses(DataBaseService context)
         {
             if (!context.ApprovalStatuses.Any())
             {
@@ -56,7 +54,7 @@ namespace Infraestructure.Data.Seed
                 context.SaveChanges();
             }
         }
-        private void LoadAreas(DataBaseService context)
+        private static void LoadAreas(DataBaseService context)
         {
             if (!context.Areas.Any())
             {
@@ -69,7 +67,7 @@ namespace Infraestructure.Data.Seed
                 context.SaveChanges();
             }
         }
-        private void LoadUser(DataBaseService context)
+        private static void LoadUser(DataBaseService context)
         {
             if (!context.Users.Any())
             {
@@ -85,7 +83,7 @@ namespace Infraestructure.Data.Seed
             }
         }
 
-        private void LoadApprovalRules(DataBaseService context)
+        private static void LoadApprovalRules(DataBaseService context)
         {
             if (!context.ApprovalRules.Any())
             {
@@ -105,5 +103,5 @@ namespace Infraestructure.Data.Seed
             }
         }
 
-
     }
+}

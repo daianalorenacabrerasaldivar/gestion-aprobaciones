@@ -1,20 +1,49 @@
-﻿namespace ApprovalManagerConsole.Presentation
+﻿using Application.UsesCases.Query;
+using Domain.Entity;
+using MediatR;
+
+namespace ApprovalManagerConsole.Presentation
 {
     public class ConsoleDisplay
     {
+        private readonly IMediator _mediator;
+        public ConsoleDisplay(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+    
+        public static User userLogin { get; set; }
+        public async Task solicituddeRolAsync()
+        {
+            Console.WriteLine("Ingrese su email");
+            var query = new GetRoleByEmailQuery("usuario@ejemplo.com");
+            var role = await _mediator.Send(query);
+
+            if (!role.IsFailed)
+            {
+                userLogin = role.Value;
+            }
+            else
+            {
+                Console.WriteLine(role.Info);
+            }
+
+            Console.Clear();
+        }
+
         public void ShowWelcomeMessage()
         {
             Console.WriteLine("¡Bienvenido a la aplicación de consola de Approval Manager!");
             Console.WriteLine("===============================================");
             Console.WriteLine("Por favor, selecciona una opción del menú:");
 
-
+            ShowMenuRole();
         }
 
-        public void ShowMenu()
+        public void ShowMenuRole()
         {
             Console.WriteLine("1. Crear un nuevo proyecto");
-            Console.WriteLine("2. Aprobar un proyecto");
+            Console.WriteLine("2. Aprobar un proyeScto");
             Console.WriteLine("3. Ver Mis proyectos");
             Console.WriteLine("3. Ver Todos los proyectos");
             Console.WriteLine("4. Ver proyectos Aprobados");
