@@ -1,6 +1,7 @@
 using Application.Interface;
 using Domain.Common.OptionResponse;
 using Domain.Entity;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
@@ -15,7 +16,7 @@ namespace Application.UsesCases.Query
             _dataBaseService = dataBaseService;
         }
 
-        public async Task<Option<User>> Handle(GetRoleByEmailQuery request)
+        public async Task<Option<User>> Handle(GetRoleByEmailQuery request, CancellationToken cancellationToken)
         {
             try
             {
@@ -41,6 +42,5 @@ namespace Application.UsesCases.Query
                 return new Failed<User>("Ocurrio un error en el sistema, por favor intente m�s tarde");
             }
         }
-
     }
 }

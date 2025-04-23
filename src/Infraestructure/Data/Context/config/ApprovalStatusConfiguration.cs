@@ -2,7 +2,7 @@ using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infraestructure.Data.Context
+namespace Infraestructure.Data.Context.config
 {
     public class ApprovalStatusConfiguration : IEntityTypeConfiguration<ApprovalStatus>
     {
@@ -11,7 +11,14 @@ namespace Infraestructure.Data.Context
             builder.HasKey(status => status.Id);
             builder.Property(status => status.Name)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(25);
+
+            builder.HasData(
+                     new ApprovalStatus { Id = 1, Name = "Pending" },
+                    new ApprovalStatus { Id = 2, Name = "Approved" },
+                    new ApprovalStatus { Id = 3, Name = "Rejected" },
+                    new ApprovalStatus { Id = 4, Name = "Observed" }
+                    );
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Infraestructure.Data.Context;
-using Infraestructure.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +25,7 @@ namespace ApprovalManagerConsole
             using (var scope = serviceProvider.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<DataBaseService>();
-                InitialDataLoading.DataLoading(dbContext);
+
                 Console.WriteLine("El contexto de base de datos se configuró correctamente.");
             }
 

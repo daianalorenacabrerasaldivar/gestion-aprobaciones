@@ -1,7 +1,7 @@
 ﻿using Application.Interface;
 using Domain.Entity;
 
-namespace Application.UsesCases
+namespace Application.Rules
 {
     public class AprobationProject
     {

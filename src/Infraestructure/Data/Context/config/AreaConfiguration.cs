@@ -2,7 +2,7 @@ using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infraestructure.Data.Context
+namespace Infraestructure.Data.Context.config
 {
     public class AreaConfiguration : IEntityTypeConfiguration<Area>
     {
@@ -11,7 +11,16 @@ namespace Infraestructure.Data.Context
             builder.HasKey(area => area.Id);
             builder.Property(area => area.Name)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(25);
+
+
+            builder.HasData(
+                    new Area { Id = 1, Name = "Finanzas" },
+                    new Area { Id = 2, Name = "Tecnología" },
+                    new Area { Id = 3, Name = "Recursos Humanos" },
+                    new Area { Id = 4, Name = "Operaciones" }
+                    );
+
         }
     }
 }

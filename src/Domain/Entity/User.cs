@@ -11,6 +11,7 @@ namespace Domain.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public int Role { get; set; }
+        public int Role { get; set; } // ApproverRoleId
+        public ApproverRole ApproverRole { get; set; } // FK
     }
 }
